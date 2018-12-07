@@ -1,0 +1,156 @@
+
+size()
+  if length(arguments) == 1
+    width: arguments[0]
+    height: arguments[0]
+  else
+    width: arguments[0]
+    height: arguments[1]
+
+
+flex-mix($flow = column wrap, $cont = center, $items = center)
+  display flex
+  flex-flow $flow
+  justify-content $cont
+  align-items $items
+
+
+set-fslh($fontSize, $lineHeight)
+  font-size $fontSize
+  line-height $lineHeight
+
+
+ellipsis($type = block, $multiline = false)
+  display $type
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+
+
+  if $multiline
+    white-space normal
+    display -webkit-box
+    -webkit-box-orient vertical
+    -webkit-line-clamp $multiline
+
+
+break-large-text()
+  word-break break-word
+  overflow-wrap break-word
+  word-wrap break-word
+  hyphens auto
+
+
+placeholder()
+  &::-webkit-input-placeholder
+    {block}
+  &::-moz-placeholder
+    {block}
+  &:-ms-input-placeholder
+    {block}
+  &:-moz-placeholder
+    {block}
+
+
+autofill()
+  &:-webkit-autofill
+    {block}
+  &:-webkit-autofill:hover
+    {block}
+  &:-webkit-autofill:focus
+    {block}
+
+disable-select-arrows()
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+
+disable-selection()
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+pos-sticky()
+  position: -webkit-sticky
+  position: sticky
+
+img($full-name, $position = '50% 50%', $repeat = no-repeat)
+  background-image url($img-path + $full-name)
+  background-repeat $repeat
+  background-position unquote($position)
+
+
+bckgrnd-props($size = cover, $repeat  = no-repeat, $position = "50% 50%")
+  background-size $size
+  background-repeat $repeat
+  background-position unquote($position)
+
+
+def-font()
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica, 'Helvetica Neue', Arial, sans-serif
+
+
+btn-constructor($svg, $size = cover, $radius = 0, $bgcol = false, $bghcol = false, $svgcol = false)
+  border-radius: $radius
+  if $bghcol
+    background-color: $bgcol
+  background-image: url('svg/icon-' + $svg + '.svg')
+  bckgrnd-props($size)
+  &:hover
+    if $bghcol
+      background-color: $bghcol
+    if $svgcol
+      background-image: url('svg/icon-' + $svg + '.svg?fill=' + $svgcol)
+
+
+border-radius-fix($arg)
+  border-radius: $arg
+  +w-max(960px)
+    border-radius: 0
+
+/*--------------------------------------
+  XY axis helpers
+--------------------------------------*/
+-xy(prop1, prop2, args)
+  {prop1} args[0]
+  if args[1]
+    {prop2} args[1]
+  else
+    {prop2} args[0]
+
+
+margin-x()
+  -xy(margin-right, margin-left, arguments)
+
+margin-y()
+  -xy(margin-top, margin-bottom, arguments)
+
+padding-x()
+  -xy(padding-right, padding-left, arguments)
+
+padding-y()
+  -xy(padding-top, padding-bottom, arguments)
+
+/*------------------------------------*\
+  responsive mixins
+\*------------------------------------*/
+w-max()
+  condition = 'only screen and (max-width: %s)' % arguments[0]
+  @media condition
+    {block}
+
+w-min()
+  condition = 'only screen and (min-width: %s)' % arguments[0]
+  @media condition
+    {block}
+
+h-max()
+  condition = 'only screen and (max-height: %s)' % arguments[0]
+  @media condition
+    {block}
+
+h-min()
+  condition = 'only screen and (min-height: %s)' % arguments[0]
+  @media condition
+    {block}

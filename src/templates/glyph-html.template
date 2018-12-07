@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Generated Font: <%= fontName %></title>
+    <link href="http://cdn.attendify.com/montana/0.20.3-production/css/montana-styles.min.css" type="text/css" rel="stylesheet">
+    <link href="style.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="font-preview"  id="font-preview">
+      <header class="font-preview__header">
+        <h1 class="font-preview__title"> Attendify <%= fontName %> Set</h1>
+        <p>Click the icon to copy it"s full name, or <br/>
+          <input type="search" id="search"
+                 class="font-preview__search-field"
+                 placeholder="find it..."/>
+        </p>
+        <span class="font-preview__clipboard-success-alert  is-hidden">Clipped!</span>
+      </header>
+
+      <ul class="font-preview__list" id="glyph-list">
+        <% _.forEach(glyphs, function(glyph) { %>
+          <li class="font-preview__list-item  clp"
+              data-clipboard-text="<%= glyph.name %> <%= className %>">
+
+            <div class="font-preview__icon">
+              <span class="<%= className %> <%= className %>--<%= glyph.name %>"></span>
+            </div>
+
+            <span class="font-preview__icon-name"><%= glyph.name %></span>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.1/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+    <script>
+      var clipboard = new Clipboard(".clp");
+
+      clipboard.on("success", function(e) {
+        $(".font-preview__clipboard-success-alert").removeClass("is-hidden")
+        setTimeout(function() {
+            $(".font-preview__clipboard-success-alert").addClass("is-hidden")
+          }, 1000)
+      });
+
+      var options = {
+        valueNames: ["font-preview__icon-name"],
+        listClass: "font-preview__list",
+        searchClass: "font-preview__search-field",
+        page: 500
+      };
+      var glyphList = new List("font-preview", options);
+    </script>
+  </body>
+</html>
