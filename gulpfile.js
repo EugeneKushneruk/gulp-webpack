@@ -36,10 +36,8 @@ gulp.task('styles', () => {
 
   return gulp.src('src/stylus/index.styl')
     .pipe(errorHandler())
-    .pipe(gulpIf(isDev, sourcemaps.init()))
     .pipe(stylus())
     .pipe(postcss(plugins))
-    .pipe(gulpIf(isDev, sourcemaps.write()))
     .pipe(rename({ basename: 'style' }))
     .pipe(gulpIf(isDev, gulp.dest('temp'), gulp.dest('dist')))
     .pipe(browserSync.stream());
