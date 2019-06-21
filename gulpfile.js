@@ -23,8 +23,8 @@ const del           = require('del');
 // HTML
 gulp.task('html', () => {
   return gulp.src('src/*.html')
-      .pipe(errorHandler())
-      .pipe(gulpIf(isDev, gulp.dest('temp'), gulp.dest('dist')))
+    .pipe(errorHandler())
+    .pipe(gulpIf(isDev, gulp.dest('temp'), gulp.dest('dist')))
 });
 
 

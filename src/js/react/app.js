@@ -8,49 +8,49 @@ import Main from "./components/Main";
 
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        const textList = [
-            "Simple",
-            "React",
-            "App"
-        ];
+  render() {
+    const textList = [
+      "Simple",
+      "React",
+      "App"
+    ];
 
-        return (
-            <div>
-                <Header
-                    title="Hello World"
-                    list={textList}
-                />
-                <Main/>
-            </div>
-        )
-    }
+    return (
+      <div>
+        <Header
+          title="Hello World"
+          list={textList}
+        />
+        <Main/>
+      </div>
+    )
+  }
 }
 
 
 const mapStateToProps = (state) => {
-    return {
-        sample: state.sample,
-        testReducer: state.testReducer
-    }
+  return {
+    sample: state.sample,
+    testReducer: state.testReducer
+  }
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        testAction: (str) => dispatch(testAction(str)),
-    }
+  return {
+    testAction: (str) => dispatch(testAction(str)),
+  }
 };
 
 const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
 
 ReactDOM.render(
-    <Provider store={store}>
-        <ConnectedApp/>
-    </Provider>,
-    document.getElementById("app")
+  <Provider store={store}>
+    <ConnectedApp/>
+  </Provider>,
+  document.getElementById("app")
 );
