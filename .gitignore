@@ -5,7 +5,14 @@
 out
 gen
 
-dist/
+# Modules
 node_modules/
-temp/
-generated/
+
+# Prj files
+dist
+temp
+generated
+
+# Cypress.io
+cypress
+cypress.json
