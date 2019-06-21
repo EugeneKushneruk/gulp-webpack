@@ -31,8 +31,8 @@ gulp.task('html', () => {
 // Styles
 gulp.task('styles', () => {
   const plugins = isDev
-    ? [ autoprefixer({ browsers: ['last 2 version'] }) ]
-    : [ autoprefixer({ browsers: ['last 2 version'] }), cssnano() ];
+    ? [ autoprefixer() ]
+    : [ autoprefixer(), cssnano() ];
 
   return gulp.src('src/stylus/index.styl')
     .pipe(errorHandler())
