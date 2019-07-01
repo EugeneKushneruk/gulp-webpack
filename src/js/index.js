@@ -1,2 +1,2 @@
 console.log("STARTED");
-import "./react/app";
+import "./react/App";

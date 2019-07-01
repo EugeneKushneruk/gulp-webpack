@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import update from 'immutability-helper';
 
 
-class Main extends Component {
+class Slides extends Component {
   constructor(props) {
     super(props);
 
@@ -12,12 +12,11 @@ class Main extends Component {
   }
 
   changeSlide() {
-    console.log("CLICK");
-    this.setState((prevState) => {
-      return update(prevState, {
-        slide: {$set: (prevState.slide === 2 ? 0 : prevState.slide += 1)}
-      })
-    })
+    this.setState((prevState) => update(prevState, {
+      slide: {
+        $set: (prevState.slide === 2 ? 0 : prevState.slide += 1)
+      }
+    }))
   }
 
   render() {
@@ -38,4 +37,4 @@ class Main extends Component {
 }
 
 
-export default Main;
+export default Slides;

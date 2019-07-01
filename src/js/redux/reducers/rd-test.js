@@ -1,4 +1,4 @@
-import { TEST } from "../actions/actionsTypes";
+import { TEST } from "../actions/ac-types";
 import update from 'immutability-helper';
 
 const initialState = {

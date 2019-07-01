@@ -1,7 +1,10 @@
 import fetch from "unfetch";
 
 
-const fetchData = (LINK, DATA, CALLBACK) => {
+const fetchData = (LINK, DATA=null, CALLBACK) => {
+  const options = DATA == null
+    ? { method: "GET" }
+    : { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(DATA) };
 
   function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
@@ -15,13 +18,7 @@ const fetchData = (LINK, DATA, CALLBACK) => {
     }
   }
 
-  fetch(LINK, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(DATA)
-  })
+  fetch(LINK, options)
     .then(checkStatus)
     .then(response => response.json())
     .then(data => CALLBACK(data))

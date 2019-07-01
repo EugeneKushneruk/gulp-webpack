@@ -1,3 +1,13 @@
+.header
+  flex-mix(row nowrap, center, center)
+  cursor pointer
+
+  &:hover
+    color red
+
+  &__title
+    set-fslh(18px, 24px)
+
 .slides
   size(100%, auto)
 
@@ -12,3 +22,61 @@
   &__blue
     size(100%, 400px)
     background-color blue
+
+.gallery
+  size(100%, auto)
+  padding 20px
+  box-sizing border-box
+
+  &__container
+    size(100%, auto)
+    flex-mix(row wrap, center, stretch)
+
+  &__item
+    margin 10px
+    padding 20px
+    size(200px, auto)
+    flex-mix(column wrap, flex-start, center)
+    border 1px solid black
+    border-radius 10px
+    box-sizing border-box
+
+  &__item-ic
+    margin 0 0 20px
+    size(50px, auto)
+    border 1px solid black
+    border-radius 10px
+    box-sizing border-box
+
+  &__item-descr
+    margin 0 0 20px
+    size(100%, auto)
+    set-fslh(16px, 20px)
+    text-align center
+
+  &__item-link
+    margin auto 0 0
+    set-fslh(16px, 20px)
+
+.warning
+  size(100%, auto)
+  flex-mix(row wrap, center, center)
+
+  &__red
+    color red
+    set-fslh(18px, 24px)
+    text-transform uppercase
+
+.f-menu
+  padding 20px
+  position sticky
+  bottom 0
+  left 0
+  size(100%, auto)
+  flex-mix(row wrap, flex-start, center)
+  border-top 1px solid black
+  box-sizing border-box
+  background-color white
+
+  &__btn
+    color black

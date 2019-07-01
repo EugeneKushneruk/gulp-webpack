@@ -1,4 +1,4 @@
-import * as actions from "./actionsTypes";
+import * as actions from "./ac-types";
 
 export function testAction(str) {
   return {

@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 
 
-const Header = ({ title, list }) => {
+const Header = ({ title, handler }) => {
   return (
-    <header>
-      <h1>{title}</h1>
-      <ul>
-        {list.map((item, i) => <li key={`${item}/${i}`}>{item}</li>)}
-      </ul>
+    <header className="header" onClick={handler}>
+      <h1 className="header__title">{title}</h1>
     </header>
   )
 };
