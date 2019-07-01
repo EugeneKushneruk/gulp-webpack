@@ -32,7 +32,7 @@ class App extends Component {
     this.state = {
       galleryArr: [],
       isLoading: false,
-      shownItems: 100
+      maxShownItems: 100
     };
 
     this.fetchNewImages = this.fetchNewImages.bind(this);
@@ -44,10 +44,10 @@ class App extends Component {
   }
 
   showMoreItems() {
-    if (this.state.shownItems < this.state.galleryArr.length) {
+    if (this.state.maxShownItems < this.state.galleryArr.length) {
       this.setState((prevState) => update(prevState, {
-        shownItems: {
-          $set: prevState.shownItems + 100
+        maxShownItems: {
+          $set: prevState.maxShownItems + 100
         }
       }))
     }
@@ -61,7 +61,7 @@ class App extends Component {
       isLoading: {
         $set: true
       },
-      shownItems: {
+      maxShownItems: {
         $set: 100
       }
     }), fetchData(
@@ -78,7 +78,7 @@ class App extends Component {
   }
 
   render() {
-    const { galleryArr, isLoading, shownItems } = this.state;
+    const { galleryArr, isLoading, maxShownItems } = this.state;
 
     return (
       <div>
@@ -90,13 +90,12 @@ class App extends Component {
         {isLoading
           ? <Warning txt="Loading" />
           : galleryArr.length
-            ? <Gallery data={galleryArr.slice(0, shownItems)} />
+            ? <>
+                <Gallery data={galleryArr.slice(0, maxShownItems)} />
+                <FloatingMenu handler={this.showMoreItems} />
+              </>
             : <Warning txt="Empty content" />
         }
-
-        {galleryArr.length > 0 && (
-          <FloatingMenu handler={this.showMoreItems} />
-        )}
       </div>
     )
   }
